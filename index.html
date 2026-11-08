@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SmartTools Pakistan</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f1f5ff;
+    color: #172554;
+}
+
+header {
+    background: linear-gradient(120deg, #172554, #4338ca);
+    color: white;
+    padding: 35px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+header p {
+    color: #dbeafe;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 35px auto;
+    padding: 15px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome h2 {
+    margin-bottom: 10px;
+}
+
+.tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #dbeafe;
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #4338ca;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+button {
+    background: #4338ca;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #312e81;
+}
+
+.result {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #15803d;
+    overflow-wrap: anywhere;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    background: #172554;
+    color: white;
+    margin-top: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🚀 SmartTools Pakistan</h1>
+    <p>Free Online Tools For Everyone</p>
+</header>
+
+<div class="container">
+
+    <div class="welcome">
+        <h2>Welcome to SmartTools!</h2>
+        <p>Use our free and easy online tools.</p>
+    </div>
+
+    <div class="tools">
+
+        <div class="card">
+            <h3>🧮 Calculator</h3>
+            <input type="number" id="num1" placeholder="First number">
+            <input type="number" id="num2" placeholder="Second number">
+            <button onclick="calculate()">Add Numbers</button>
+            <div class="result" id="calcResult"></div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Percentage Calculator</h3>
+            <input type="number" id="percent" placeholder="Percentage">
+            <input type="number" id="total" placeholder="Total number">
+            <button onclick="percentage()">Calculate</button>
+            <div class="result" id="percentResult"></div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Word Counter</h3>
+            <textarea id="words" rows="4" placeholder="Write your text here..."></textarea>
+            <button onclick="countWords()">Count Words</button>
+            <div class="result" id="wordResult"></div>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 SmartTools Pakistan | Made with ❤️</p>
+</footer>
+
+<script>
+function calculate() {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+
+    if (document.getElementById("num1").value === "" ||
+        document.getElementById("num2").value === "") {
+        document.getElementById("calcResult").innerText =
+            "Please enter both numbers.";
+        return;
+    }
+
+    document.getElementById("calcResult").innerText =
+        "Answer: " + (a + b);
+}
+
+function percentage() {
+    let p = Number(document.getElementById("percent").value);
+    let t = Number(document.getElementById("total").value);
+
+    if (document.getElementById("percent").value === "" ||
+        document.getElementById("total").value === "") {
+        document.getElementById("percentResult").innerText =
+            "Please enter both values.";
+        return;
+    }
+
+    document.getElementById("percentResult").innerText =
+        "Result: " + (p / 100 * t);
+}
+
+function countWords() {
+    let text = document.getElementById("words").value.trim();
+    let count = text === "" ? 0 : text.split(/\s+/).length;
+
+    document.getElementById("wordResult").innerText =
+        "Total Words: " + count;
+}
+</script>
+<div class="card">
+    <h3>📱 QR Code Generator</h3>
+    <input type="text" id="qrText" placeholder="Enter text or website link">
+    <button onclick="generateQR()">Generate QR Code</button>
+    <div id="qrResult" style="margin-top:15px;text-align:center;"></div>
+</div>
+
+<script>
+function generateQR() {
+    let text = document.getElementById("qrText").value.trim();
+    let result = document.getElementById("qrResult");
+
+    if (text === "") {
+        result.innerText = "Please enter text or link!";
+        return;
+    }
+
+    result.innerHTML =
+        '<img alt="QR Code" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data='
+        + encodeURIComponent(text) + '">';
+}
+</script>
+</body>
+<div class="card">
+    <h3>🖼️ Image Resizer</h3>
+    <input type="file" id="imageFile" accept="image/*">
+    <input type="number" id="imgWidth" placeholder="New width (e.g. 500)">
+    <input type="number" id="imgHeight" placeholder="New height (e.g. 500)">
+    <button onclick="resizeImage()">Resize Image</button>
+    <div id="imageResult" class="result"></div>
+</div>
+
+<script>
+function resizeImage() {
+    const file = document.getElementById("imageFile").files[0];
+    const width = Number(document.getElementById("imgWidth").value);
+    const height = Number(document.getElementById("imgHeight").value);
+    const result = document.getElementById("imageResult");
+
+    if (!file || width <= 0 || height <= 0) {
+        result.innerText = "Choose an image and enter width and height.";
+        return;
+    }
+
+    const img = new Image();
+    const url = URL.createObjectURL(file);
+
+    img.onload = function() {
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img, 0, 0, width, height);
+
+        canvas.toBlob(function(blob) {
+            const downloadURL = URL.createObjectURL(blob);
+            result.innerHTML =
+                '<p>Image resized successfully!</p>' +
+                '<a href="' + downloadURL +
+                '" download="resized-image.png">Download Image</a>';
+
+            URL.revokeObjectURL(url);
+        }, "image/png");
+    };
+
+    img.src = url;
+}
+</script>
+</html>
