@@ -1,0 +1,10 @@
+{
+  "name": "Toolify Pakistan",
+  "short_name": "Toolify",
+  "description": "Free online tools for everyone",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2456d8"
+}
